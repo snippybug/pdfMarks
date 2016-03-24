@@ -1,0 +1,7 @@
+程序包含以下部分：
+lib/*	程序运行需要的jre库
+src/*	源代码
+readmarks和setmarks	运行脚本
+
+两个脚本会自动设置环境变量并调用java运行程序：readmarks运行ReadBookmarks，setmarks运行CreateBookmarks。我上传的class文件是用Java8编译的，因此Java7的虚拟机不能正确运行。如果真的遇到这种情况，还请自己重新编译。另外，readmarks和setmarks也需要根据自己的环境配置。
+程序的具体实现请见脚本和代码内的注释

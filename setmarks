@@ -1,0 +1,27 @@
+#!/bin/bash
+
+JAVA_HOME=/home/wangzonglei/jdk1.8.0_65
+PROJECT_PATH=/home/wangzonglei/program/java/pdfMarks
+export CLASSPATH=$PROJECT_PATH/lib/commons-logging-1.2.jar:$PROJECT_PATH/lib/pdfbox-2.0.0.jar:$PROJECT_PATH/bin/
+
+# 配置文件说明
+# 配置文件的根节点是document，不含属性。所有的标签结点的名称都为mark
+# page属性表示标签指向的位置，name属性表示其名称。
+# 一个典型的文件如下：
+# <document name="...">
+#	<mark page="10" name="第10页"
+#		<mark page="20" name="第20页"/>
+#	</mark>
+#	.
+#	.
+#	.
+# </document>
+
+if [ $# -ne 2 ] ; then
+	echo "Usage: `basename $0` mark-file pdf-file"
+	exit -1
+else
+	$JAVA_HOME/bin/java CreateBookmarks $1 "$2"
+fi
+
+
