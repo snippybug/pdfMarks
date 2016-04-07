@@ -57,7 +57,14 @@ public final class ReadBookmarks {
                 {
                 	xmldoc = DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
                 	Element root = xmldoc.createElement("document");
-                	root.setAttribute("name", args[0]);
+                	String name;
+                	int index;
+                	if((index=args[0].lastIndexOf('/')) == -1){
+                		name = args[0];
+                	}else{
+                		name = args[0].substring(index+1);
+                	}
+                	root.setAttribute("name", name);
                 	xmldoc.appendChild(root);
                 	
                 	// 递归添加标签
