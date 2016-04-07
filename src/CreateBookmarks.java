@@ -59,11 +59,13 @@ public final class CreateBookmarks
             {
                 document = PDDocument.load( new File(args[1]) );
                 markdoc = builder.parse(new File(args[0]));
+                /*
                 if( document.isEncrypted() )
                 {
                     System.err.println( "Error: Cannot add bookmarks to encrypted document." );
                     System.exit( 1 );
                 }
+                */
                 PDDocumentOutline outline =  new PDDocumentOutline();
                 document.getDocumentCatalog().setDocumentOutline( outline );
                 tree = document.getPages();
@@ -77,7 +79,8 @@ public final class CreateBookmarks
                 outline.addLast( pagesOutline );
                 */
                 outline.openNode();
-                document.save( args[1] );
+                document.setAllSecurityToBeRemoved(true);		// remove all security when writing the pdf
+                document.save( args[1] + ".marked" );				// 重新创建文件
             }
             finally
             {
